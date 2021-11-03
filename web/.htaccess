@@ -1,9 +1,0 @@
-RewriteEngine on
-#RewriteBase /rosettablog/web/
-
-# Pretty URLs
-## Rosetta
-RewriteRule ^article/([^/]+) index.php?view=article&id=$1 [L,QSA]
-## Drupal
-RewriteRule ^node/([^/]+) index.php?view=article&id=$1 [L,QSA]
-

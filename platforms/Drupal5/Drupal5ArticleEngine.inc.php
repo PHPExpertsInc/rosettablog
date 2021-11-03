@@ -55,7 +55,7 @@ class Drupal5ArticleEngine implements ArticleEngine
 		// 2b. Attempt to fetch the article summaries.
 		$DB = MyDB::loadDB();
 		$DB->query('SELECT nid AS id, title, created AS creationDate, changed AS lastModified, teaser, format, (teaser = body) teaserEqualsBody FROM node ' .
-		           "WHERE type='story' AND promote=1 " .
+		           "WHERE type='story' AND promote=1 AND reviewed>0 " .
 		           'ORDER BY nid DESC ' . 
 		           "LIMIT $offset, $articleLimit");
 

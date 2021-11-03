@@ -2,7 +2,7 @@
 /**
 * MyDB
 *   Copyright ? 2010 Theodore R. Smith <theodore@phpexperts.pro>
-* 
+*
 * The following code is licensed under a modified BSD License.
 * All of the terms and conditions of the BSD License apply with one
 * exception:
@@ -15,7 +15,7 @@
 * BSD License: http://www.opensource.org/licenses/bsd-license.php
 **/
 
-class MyDBException extends Exception 
+class MyDBException extends Exception
 {
 	const BAD_SQL = 101;
 	const CANT_LOAD_CONFIG_FILE = 102;
@@ -48,7 +48,7 @@ class MyDBConfigStruct extends stdClass
 	{
 		$dbConfig = new MyDBConfigStruct;
 		$params = get_object_vars($config);
-		
+
 		unset($config);
 
 		foreach ($params as $param => $value)
@@ -58,7 +58,7 @@ class MyDBConfigStruct extends stdClass
 				$dbConfig->$param = $value;
 			}
 		}
-		
+
 		return $dbConfig;
 	}
 }
@@ -69,12 +69,12 @@ interface MyDBI
 	public function query($sql, array $params = null);
 	public function fetchArray();
 	public function fetchObject($objectType = 'stdClass');
-	
+
 	// Transactional SQL functions
 	public function beginTransaction();
 	public function commit();
 	public function rollback();
-	
+
 	// Write SQL functions
 	public function lastInsertId();
 }
@@ -118,12 +118,12 @@ class MyDB
 			}
 			else
 			{
-				if (!file_exists('database.config'))
+				if (!file_exists('../database.config'))
 				{
 					throw new MyDBException('Couldn\'t find database.config.', MyDBException::CANT_LOAD_CONFIG_FILE);
 				}
 
-				$data = file_get_contents('database.config');
+				$data = file_get_contents('../database.config');
 
 				if ($data === false)
 				{
@@ -174,7 +174,7 @@ class MyDB
 	}
 }
 
-abstract class MyReplicatedDB implements MyDBI 
+abstract class MyReplicatedDB implements MyDBI
 {
 	/**
 	 * DB handle that does all the reading
@@ -218,7 +218,7 @@ abstract class MyReplicatedDB implements MyDBI
 	public function fetchObject($objectType = 'stdClass')
 	{
 		return $this->dbReader->fetchObject($objectType);
-	}	
+	}
 
 	public function beginTransaction()
 	{
@@ -234,24 +234,24 @@ abstract class MyReplicatedDB implements MyDBI
 	{
 		return $this->dbWriter->rollback();
 	}
-	
+
 	public function lastInsertId()
 	{
 		return $this->dbWriter->lastInsertId();
 	}
-	
+
 }
 
 /**
- * MyDB interface for PDO 
+ * MyDB interface for PDO
  */
 class MyPDO implements MyDBI
 {
-	/** 
+	/**
 	 * @var PDO
 c	 */
 	private $pdo;
-	/** 
+	/**
 	 * @var PDOStatement
 	*/
 	private $stmt;
@@ -259,9 +259,9 @@ c	 */
 	public function __construct(MyDBConfigStruct $config)
 	{
 		$dsn = sprintf('mysql:dbname=%s;host=%s;port=%d;', $config->database, $config->hostname, $config->port);
-		$this->pdo = new PDO($dsn, $config->username, $config->password);		
+		$this->pdo = new PDO($dsn, $config->username, $config->password);
 	}
-	
+
 	// Accessors
 	public function getPDO()
 	{
@@ -270,7 +270,7 @@ c	 */
 
 	/**
 	 * Queries the database
-	 * 
+	 *
 	 * @param string $sql
 	 * @param array $params
 	 * @return PDOStatement
@@ -289,9 +289,9 @@ c	 */
 			error_log("Bugged SQL: " . debugPreparedSQL($sql, $params));
 			throw new MyDBException('Caught an SQL error...see error log for more details.', MyDBException::BAD_SQL);
 		}
-		
+
 		$this->stmt = $stmt;
- 
+
 		return $stmt;
 	}
 
@@ -326,7 +326,7 @@ c	 */
 	}
 }
 
-class MyReplicatedPDO extends MyReplicatedDB implements MyDBI 
+class MyReplicatedPDO extends MyReplicatedDB implements MyDBI
 {
 	public function __construct($config)
 	{
@@ -334,15 +334,15 @@ class MyReplicatedPDO extends MyReplicatedDB implements MyDBI
 		{
 			throw new MyDBException('Replication support enabled, but no read database specified', MyDBException::BAD_CONFIG_FILE);
 		}
-		
+
 		$readDB = MyDBConfigStruct::fromStd($config->readDB);
 
 		$this->dbReader = new MyPDO($readDB);
-		
+
 		if (isset($config->writeDB))
 		{
 			$writeDB = MyDBConfigStruct::fromStd($config->writeDB);
-			
+
 			$this->dbWriter = new MyPDO($writeDB);
 		}
 	}
@@ -357,7 +357,7 @@ class MyReplicatedPDO extends MyReplicatedDB implements MyDBI
 function getDBHandler(stdClass $config = null)
 {
 	static $myDB = null;
-	
+
 	if (!is_null($myDB) && is_null($config))
 	{
 		return $myDB;
@@ -371,13 +371,13 @@ function getDBHandler(stdClass $config = null)
 function queryDB($sql, array $params = null)
 {
 	$myDB = getDBHandler();
-	
+
 	return $myDB->query($sql, $params);
 }
 
 /**
  * Replaces any parameter placeholders in a query with the value of that
- * parameter. Useful for debugging. Assumes anonymous parameters from 
+ * parameter. Useful for debugging. Assumes anonymous parameters from
  * $params are are in the same order as specified in $query
  *
  * @param string $query The sql query with parameter placeholders

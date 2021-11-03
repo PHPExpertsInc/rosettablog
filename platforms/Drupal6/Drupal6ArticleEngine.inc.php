@@ -66,7 +66,7 @@ SELECT n.nid AS id, n.type, n.vid, n.uid, nr.title, nr.teaser, n.status, n.creat
        n.comment, n.promote, n.moderate, n.sticky, nr.format, nr.log 
 FROM node n 
 JOIN node_revisions nr USING(nid, vid) 
-WHERE n.promote=true
+WHERE n.promote=true AND n.reviewed=true
 ORDER BY nid DESC
 LIMIT $offset, $articleLimit
 SQL;

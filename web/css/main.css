@@ -1,6 +1,6 @@
 body { 
 	background-color: #2d102c;
-	background-image: url("http://drupal6.wisdomproject.cc/sites/all/themes/rt_quantive_d6/images/backgrounds/style2/high/bg-top.jpg");
+	background-image: url("/images/bg-top.jpg");
 	background-attachment: fixed;
 	background-position: center center;
 	background-repeat: no-repeat;

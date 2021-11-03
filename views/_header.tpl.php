@@ -24,7 +24,7 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 	<head>
         <base href="<?php echo $baseURL; ?>"/>
 		<title><?php echo $page_title; ?></title>
-		<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'/>
+		<link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'/>
 		<link type="text/css" rel="stylesheet" href="css/main.css"/>
 <?php
 	if (!empty($canonicalURL)) {

@@ -58,7 +58,7 @@ class CommonURLScheme implements URLSchemeI
 	{
 		if ($this->baseURL !== null) { return $this->baseURL; }
 
-		$protocol = !isset($_SERVER['HTTPS']) ? 'http' : 'https';
+		$protocol = empty($_SERVER['HTTPS']) ? 'http' : 'https';
 		$domain = $_SERVER['HTTP_HOST'];
 		if (substr_count($_SERVER['SCRIPT_NAME'], '/') === 1)
 		{

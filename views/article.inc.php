@@ -25,7 +25,9 @@ $canonicalURL = isset($canonicalURL)
 			<table class="date_box">
 				<tr>
 					<td>Created: <?php echo $creation_date; ?></td>
+                                    <?php if ($last_modified != $creation_date) { ?>
 					<td>Last modified: <?php echo $last_modified; ?></td>
+                                    <?php } ?>
 				</tr>
 			</table>
 			<div class="article_body"><?php echo $main_content; ?></div>

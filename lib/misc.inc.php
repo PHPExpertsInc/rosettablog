@@ -2,7 +2,7 @@
 /**
 * Rosetta Blog
 *   Copyright © 2010 Theodore R. Smith <theodore@phpexperts.pro>
-* 
+*
 * The following code is licensed under a modified BSD License.
 * All of the terms and conditions of the BSD License apply with one
 * exception:
@@ -25,7 +25,6 @@ function nl2p($text)
 {
     $new_text = '<p>' . preg_replace('/\r?\n\r?\n/', "</p><p>", $text) . '</p>';
     $new_text = str_replace("\n", "<br/>\n", $new_text);
-    $new_text = str_replace('</p><p>', "</p>\n\n<p>", $new_text);
 
     return $new_text;
 }
@@ -49,7 +48,7 @@ function url_a($url_in, $noEscaping = false)
     // At this point, we can safely assume that pretty_urls is enabled.
     $args = array();
     parse_str($parts['query'], $args);
-    
+
     $url = URLFactory::makePrettyURL($args);
 
     return $url;

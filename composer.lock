@@ -1,0 +1,118 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "4f0c9d8d192e09567a5180d2e7cded4b",
+    "packages": [
+        {
+            "name": "phpexperts/dockerize",
+            "version": "dev-completely_reengineered",
+            "dist": {
+                "type": "path",
+                "url": "/code/docker-php-stack",
+                "reference": "bdaaba47c3b0bbc7331ca4ee20e3479c44cba75a"
+            },
+            "type": "library",
+            "scripts": {
+                "pre-install-cmd": [
+                    "echo 1"
+                ],
+                "post-install-cmd": [
+                    "echo 2"
+                ],
+                "pre-update-cmd": [
+                    "echo 3"
+                ],
+                "post-update-cmd": [
+                    "echo 4"
+                ],
+                "pre-status-cmd": [
+                    "echo 5"
+                ],
+                "post-status-cmd": [
+                    "echo 6"
+                ],
+                "pre-archive-cmd": [
+                    "echo 7"
+                ],
+                "post-archive-cmd": [
+                    "echo 8"
+                ],
+                "pre-autoload-dump": [
+                    "echo 9"
+                ],
+                "post-autoload-dump": [
+                    "echo 10"
+                ],
+                "post-root-package-install": [
+                    "echo 11"
+                ],
+                "post-create-project-cmd": [
+                    "echo 12"
+                ],
+                "pre-dependencies-solving": [
+                    "echo 13"
+                ],
+                "post-dependencies-solving": [
+                    "echo 14"
+                ],
+                "pre-package-install": [
+                    "echo 15"
+                ],
+                "post-package-install": [
+                    "echo 16"
+                ],
+                "pre-package-update": [
+                    "echo 17"
+                ],
+                "post-package-update": [
+                    "echo 18"
+                ],
+                "pre-package-uninstall": [
+                    "echo 19"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP Experts, Inc.",
+                    "homepage": "https://www.phpexperts.pro/"
+                },
+                {
+                    "name": "Theodore R. Smith",
+                    "homepage": "https://www.linkedin.com/in/tedrsmith"
+                }
+            ],
+            "description": "The quickest and easiest way to dockerize any PHP app.",
+            "homepage": "https://www.phpexperts.pro/",
+            "keywords": [
+                "docker",
+                "dockerize",
+                "new project"
+            ],
+            "transport-options": {
+                "symlink": true,
+                "relative": false
+            }
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "phpexperts/dockerize": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": "^7.2",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
+}

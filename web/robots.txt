@@ -1,0 +1,7 @@
+User-agent: ia_archiver
+Disallow: /node/185
+
+
+User-agent: *
+Disallow: 
+
